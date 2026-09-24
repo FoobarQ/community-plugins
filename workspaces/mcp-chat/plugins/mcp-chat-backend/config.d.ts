@@ -68,6 +68,13 @@ export interface Config {
        * @visibility backend
        */
       temperature?: number;
+      /**
+       * Optional overrides for provider endpoints. Useful for testing or custom deployments.
+       */
+      endpointOverrides?: {
+        requestEndpoint?: string;
+        modelsEndpoint?: string;
+      };
     }>;
     /**
      * MCP (Model Context Protocol) servers configuration
@@ -166,5 +173,7 @@ export interface Config {
        */
       summarizeTimeout?: number;
     };
+
+    includeBackendActions?: boolean;
   };
 }

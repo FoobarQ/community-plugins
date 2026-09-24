@@ -56,7 +56,10 @@ export class OpenAIResponsesProvider extends LLMProvider {
     _tools?: Tool[],
   ): Promise<ChatResponse> {
     const requestBody = this.formatRequest(messages);
-    const response = await this.makeRequest('/responses', requestBody);
+    const response = await this.makeRequest(
+      this.requestEndpoint ?? '/responses',
+      requestBody,
+    );
     return this.parseResponse(response);
   }
 
@@ -68,14 +71,17 @@ export class OpenAIResponsesProvider extends LLMProvider {
     try {
       // For Responses API, we can test with a simple request
       // Or we could check if the endpoint is reachable
-      const response = await fetch(`${this.baseUrl}/responses`, {
-        method: 'POST',
-        headers: this.getHeaders(),
-        body: JSON.stringify({
-          input: 'test',
-          model: this.model,
-        }),
-      });
+      const response = await fetch(
+        `${this.baseUrl}${this.requestEndpoint ?? '/responses'}`,
+        {
+          method: 'POST',
+          headers: this.getHeaders(),
+          body: JSON.stringify({
+            input: 'test',
+            model: this.model,
+          }),
+        },
+      );
 
       if (!response.ok) {
         const errorText = await response.text();
