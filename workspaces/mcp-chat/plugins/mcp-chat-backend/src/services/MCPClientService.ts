@@ -14,6 +14,7 @@
  * limitations under the License.
  */
 
+import { BackstageCredentials } from '@backstage/backend-plugin-api';
 import {
   ChatMessage,
   MCPServer,
@@ -80,6 +81,7 @@ export interface MCPClientService {
   processQuery(
     messagesInput: ChatMessage[],
     enabledTools?: string[],
+    userCredentials?: BackstageCredentials,
   ): Promise<QueryResponse>;
 
   /**

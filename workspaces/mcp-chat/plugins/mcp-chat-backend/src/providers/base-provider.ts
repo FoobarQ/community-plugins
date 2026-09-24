@@ -31,6 +31,8 @@ export abstract class LLMProvider {
   protected logger?: LoggerService;
   protected maxTokens?: number;
   protected temperature?: number;
+  protected requestEndpoint?: string;
+  protected modelsEndpoint?: string;
 
   constructor(config: ProviderConfig) {
     this.apiKey = config.apiKey;
@@ -40,6 +42,8 @@ export abstract class LLMProvider {
     this.logger = config.logger;
     this.maxTokens = config.maxTokens;
     this.temperature = config.temperature;
+    this.requestEndpoint = config.endpointOverrides?.requestEndpoint;
+    this.modelsEndpoint = config.endpointOverrides?.modelsEndpoint;
   }
 
   abstract sendMessage(
