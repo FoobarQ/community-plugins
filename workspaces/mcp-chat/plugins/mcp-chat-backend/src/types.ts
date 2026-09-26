@@ -103,6 +103,7 @@ export interface MCPServerConfig {
   url?: string;
   /** List of tools to be excluded for the MCP Server */
   disabledTools?: string[];
+  internal?: boolean;
 }
 
 /**
@@ -216,6 +217,13 @@ export interface ProviderConfig {
   maxTokens?: number;
   /** Temperature for response randomness, between 0 and 1 (default: 0.7) */
   temperature?: number;
+  /** Optional overrides for provider endpoints */
+  endpointOverrides?: {
+    /** Optional override for the request endpoint */
+    requestEndpoint?: string;
+    /** Optional override for the models endpoint */
+    modelsEndpoint?: string;
+  };
 }
 
 /**

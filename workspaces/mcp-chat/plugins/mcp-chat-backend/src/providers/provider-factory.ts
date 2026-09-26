@@ -134,6 +134,14 @@ export function getProviderConfig(config: RootConfigService): ProviderConfig {
       model: model,
       maxTokens: maxTokens,
       temperature: temperature,
+      endpointOverrides: {
+        requestEndpoint: providerConfig.getOptionalString(
+          'endpointOverrides.requestEndpoint',
+        ),
+        modelsEndpoint: providerConfig.getOptionalString(
+          'endpointOverrides.modelsEndpoint',
+        ),
+      },
     },
 
     'openai-responses': {
@@ -143,6 +151,14 @@ export function getProviderConfig(config: RootConfigService): ProviderConfig {
       model: model,
       maxTokens: maxTokens,
       temperature: temperature,
+      endpointOverrides: {
+        requestEndpoint: providerConfig.getOptionalString(
+          'endpointOverrides.requestEndpoint',
+        ),
+        modelsEndpoint: providerConfig.getOptionalString(
+          'endpointOverrides.modelsEndpoint',
+        ),
+      },
     },
 
     'azure-openai': {
@@ -158,10 +174,20 @@ export function getProviderConfig(config: RootConfigService): ProviderConfig {
     claude: {
       type: 'claude',
       apiKey: token,
-      baseUrl: 'https://api.anthropic.com/v1',
+      baseUrl:
+        providerConfig.getOptionalString('baseUrl') ||
+        'https://api.anthropic.com/v1',
       model: model,
       maxTokens: maxTokens,
       temperature: temperature,
+      endpointOverrides: {
+        requestEndpoint: providerConfig.getOptionalString(
+          'endpointOverrides.requestEndpoint',
+        ),
+        modelsEndpoint: providerConfig.getOptionalString(
+          'endpointOverrides.modelsEndpoint',
+        ),
+      },
     },
 
     gemini: {
@@ -191,6 +217,14 @@ export function getProviderConfig(config: RootConfigService): ProviderConfig {
       model: model,
       maxTokens: maxTokens,
       temperature: temperature,
+      endpointOverrides: {
+        requestEndpoint: providerConfig.getOptionalString(
+          'endpointOverrides.requestEndpoint',
+        ),
+        modelsEndpoint: providerConfig.getOptionalString(
+          'endpointOverrides.modelsEndpoint',
+        ),
+      },
     },
   };
 

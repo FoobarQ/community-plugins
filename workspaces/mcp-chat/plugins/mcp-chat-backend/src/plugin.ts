@@ -40,15 +40,19 @@ export const mcpChatPlugin = createBackendPlugin({
         httpRouter: coreServices.httpRouter,
         database: coreServices.database,
         httpAuth: coreServices.httpAuth,
+        auth: coreServices.auth,
       },
-      async init({ logger, httpRouter, config, database, httpAuth }) {
+      async init({ logger, httpRouter, config, database, httpAuth, auth }) {
         validateConfig(config);
 
         // Initialize core services
         const mcpClientService = new MCPClientServiceImpl({
           logger,
           config,
+          auth,
         });
+
+        await mcpClientService.initializeMCPServers();
 
         const conversationStore = await ChatConversationStore.create({
           database,
