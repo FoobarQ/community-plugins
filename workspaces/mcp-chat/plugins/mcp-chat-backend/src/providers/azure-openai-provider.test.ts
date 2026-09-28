@@ -25,6 +25,10 @@ const config: ProviderConfig = {
   baseUrl: 'https://my-resource.openai.azure.com/openai/v1',
   model: 'gpt-4o-mini',
   deploymentName: 'my-gpt-4o-mini-deployment',
+  pathOverrides: {
+    inference: '/chat/completions',
+    models: '/models',
+  },
 };
 
 describe('AzureOpenAIProvider', () => {
