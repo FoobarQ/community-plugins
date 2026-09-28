@@ -27,7 +27,7 @@ export class ClaudeProvider extends LLMProvider {
     tools?: Tool[],
   ): Promise<ChatResponse> {
     const requestBody = this.formatRequest(messages, tools);
-    const response = await this.makeRequest('/messages', requestBody);
+    const response = await this.makeRequest(this.paths.inference, requestBody);
     return this.parseResponse(response);
   }
 
@@ -45,7 +45,7 @@ export class ClaudeProvider extends LLMProvider {
         messages: this.convertToAnthropicFormat(testMessages),
       };
 
-      const response = await fetch(`${this.baseUrl}/messages`, {
+      const response = await fetch(`${this.baseUrl}${this.paths.inference}`, {
         method: 'POST',
         headers: this.getHeaders(),
         body: JSON.stringify(requestBody),

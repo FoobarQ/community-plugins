@@ -27,6 +27,10 @@ describe('OpenAIProvider', () => {
     apiKey: 'test-api-key',
     baseUrl: 'https://api.openai.com/v1',
     model: 'gpt-4o-mini',
+    apiPaths: {
+      inference: '/chat/completions',
+      models: '/models',
+    },
   };
 
   beforeEach(() => {

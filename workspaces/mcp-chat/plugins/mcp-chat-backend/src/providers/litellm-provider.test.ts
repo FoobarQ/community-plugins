@@ -32,6 +32,10 @@ describe('LiteLLMProvider', () => {
     baseUrl: 'http://localhost:4000',
     model: 'gpt-4',
     logger: mockLogger,
+    apiPaths: {
+      inference: '/chat/completions',
+      models: '/models',
+    },
   };
 
   beforeEach(() => {

@@ -15,8 +15,15 @@
  */
 import { LoggerService } from '@backstage/backend-plugin-api';
 import { ResponseError } from '@backstage/errors';
-import { ChatMessage, Tool, ChatResponse, ProviderConfig } from '../types';
+import {
+  ChatMessage,
+  Tool,
+  ChatResponse,
+  ProviderConfig,
+  OverrideablePaths,
+} from '../types';
 
+const EMPTY_PATHS_OBJ = { inference: '', models: '' } as const;
 /**
  * Abstract base class for all LLM providers.
  * Extend this class to create custom LLM provider implementations.
@@ -31,6 +38,7 @@ export abstract class LLMProvider {
   protected logger?: LoggerService;
   protected maxTokens?: number;
   protected temperature?: number;
+  protected paths: Record<OverrideablePaths, string>;
 
   constructor(config: ProviderConfig) {
     this.apiKey = config.apiKey;
@@ -40,6 +48,7 @@ export abstract class LLMProvider {
     this.logger = config.logger;
     this.maxTokens = config.maxTokens;
     this.temperature = config.temperature;
+    this.paths = { ...EMPTY_PATHS_OBJ, ...config.apiPaths };
   }
 
   abstract sendMessage(

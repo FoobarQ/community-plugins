@@ -134,6 +134,13 @@ export function getProviderConfig(config: RootConfigService): ProviderConfig {
       model: model,
       maxTokens: maxTokens,
       temperature: temperature,
+      apiPaths: {
+        inference:
+          providerConfig.getOptionalString('pathOverrides.inference') ??
+          '/chat/completions',
+        models:
+          providerConfig.getOptionalString('pathOverrides.models') ?? '/models',
+      },
     },
 
     'openai-responses': {
@@ -143,6 +150,11 @@ export function getProviderConfig(config: RootConfigService): ProviderConfig {
       model: model,
       maxTokens: maxTokens,
       temperature: temperature,
+      apiPaths: {
+        inference:
+          providerConfig.getOptionalString('pathOverrides.inference') ??
+          '/responses',
+      },
     },
 
     'azure-openai': {
@@ -164,6 +176,11 @@ export function getProviderConfig(config: RootConfigService): ProviderConfig {
       model: model,
       maxTokens: maxTokens,
       temperature: temperature,
+      apiPaths: {
+        inference:
+          providerConfig.getOptionalString('pathOverrides.inference') ??
+          '/messages',
+      },
     },
 
     gemini: {
@@ -193,6 +210,13 @@ export function getProviderConfig(config: RootConfigService): ProviderConfig {
       model: model,
       maxTokens: maxTokens,
       temperature: temperature,
+      apiPaths: {
+        inference:
+          providerConfig.getOptionalString('pathOverrides.inference') ??
+          '/chat/completions',
+        models:
+          providerConfig.getOptionalString('pathOverrides.models') ?? '/models',
+      },
     },
   };
 

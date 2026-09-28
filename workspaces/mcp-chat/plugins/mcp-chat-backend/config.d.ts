@@ -68,6 +68,15 @@ export interface Config {
        * @visibility backend
        */
       temperature?: number;
+      /**
+       * Optional overrides for provider paths. Useful for testing or custom deployments.
+       * @visibility backend
+       * note: use overrideablePaths type in code
+       */
+      apiPaths?: {
+        inference?: string;
+        models?: string;
+      };
     }>;
     /**
      * MCP (Model Context Protocol) servers configuration

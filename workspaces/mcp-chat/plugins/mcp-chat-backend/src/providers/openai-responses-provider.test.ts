@@ -39,6 +39,9 @@ describe('OpenAIResponsesProvider', () => {
     baseUrl: 'http://test-api.com/v1',
     model: 'gemini/models/gemini-2.5-flash',
     logger: mockLogger,
+    apiPaths: {
+      inference: '/responses',
+    },
   };
 
   const mockMCPServerFullConfigs: MCPServerFullConfig[] = [

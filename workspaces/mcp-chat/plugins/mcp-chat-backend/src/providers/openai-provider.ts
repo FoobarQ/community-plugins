@@ -31,7 +31,7 @@ export class OpenAIProvider extends LLMProvider {
     tools?: Tool[],
   ): Promise<ChatResponse> {
     const requestBody = this.formatRequest(messages, tools);
-    const response = await this.makeRequest('/chat/completions', requestBody);
+    const response = await this.makeRequest(this.paths.inference, requestBody);
     return this.parseResponse(response);
   }
 
@@ -41,7 +41,7 @@ export class OpenAIProvider extends LLMProvider {
     error?: string;
   }> {
     try {
-      const response = await fetch(`${this.baseUrl}/models`, {
+      const response = await fetch(`${this.baseUrl}${this.paths.models}`, {
         method: 'GET',
         headers: this.getHeaders(),
       });
